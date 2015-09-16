@@ -1,0 +1,24 @@
+{
+  "name": "ng-zen-wrap",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ukyo/ng-zen-wrap",
+  "authors": [
+    "Syu Kato <ukyo.web@gmail.com>"
+  ],
+  "main": "dist/ng-zen-wrap.js",
+  "keywords": [
+    "zencoding",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5"
+  }
+}

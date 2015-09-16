@@ -1,10 +1,12 @@
 {
   "name": "ng-zen-wrap",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A zencoding like wrapper directive",
   "main": "index.js",
   "directories": {
-    "test": "test"
+    "test": "karma start --singlerun",
+    "start": "karma start",
+    "build": "node build.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

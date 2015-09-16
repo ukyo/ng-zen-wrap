@@ -1,0 +1,43 @@
+{
+  "name": "ng-zen-wrap",
+  "version": "0.1.1",
+  "description": "A zencoding like wrapper directive",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukyo/ng-zen-wrap.git"
+  },
+  "keywords": [
+    "zencoding",
+    "angular"
+  ],
+  "dependencies": {
+    "angular": ">1.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.5",
+    "babel-core": "^5.8.24",
+    "babel-plugin-espower": "^1.0.0",
+    "es5-shim": "^4.1.13",
+    "jquery": "^2.1.4",
+    "karma": "^0.13.9",
+    "karma-babel-preprocessor": "^5.2.2",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "mocha": "^2.3.2",
+    "phantomjs": "^1.9.18",
+    "power-assert": "^1.0.0"
+  },
+  "author": "Syu Kato <ukyo.web@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ukyo/ng-zen-wrap/issues"
+  },
+  "homepage": "https://github.com/ukyo/ng-zen-wrap"
+}

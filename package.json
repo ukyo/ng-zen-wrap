@@ -4,12 +4,12 @@
   "description": "A zencoding like wrapper directive",
   "main": "index.js",
   "directories": {
+    "test": "test"
+  },
+  "scripts": {
     "test": "karma start --singlerun",
     "start": "karma start",
     "build": "node build.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

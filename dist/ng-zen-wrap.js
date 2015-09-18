@@ -6,7 +6,23 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
-angular.module('ng-zen-wrap', []).directive('zen', function () {
+angular.module('ng-zen-wrap', []).factory('$ngZenWrapParseSelector', function () {
+  return function (s) {
+    if (!s || !s.length) throw new Error('ng-zen-wrap: attribute is empty.');
+
+    var _s$match = s.match(/^([^.#\[]*)?(?:#([^.#\[]+))?([^\[]+)?(?:\[([^\]]+)\])?$/);
+
+    var _s$match2 = _slicedToArray(_s$match, 5);
+
+    var el = _s$match2[1];
+    var id = _s$match2[2];
+    var cls = _s$match2[3];
+    var attrs = _s$match2[4];
+
+    el = el || 'div';
+    return [el, id, cls, attrs];
+  };
+}).directive('zen', ['$ngZenWrapParseSelector', function (parseSelector) {
   var createAttr = function createAttr(v, k) {
     return v ? k + '="' + v + '"' : k;
   };
@@ -29,26 +45,27 @@ angular.module('ng-zen-wrap', []).directive('zen', function () {
 
   return {
     restrict: 'E',
+    replace: true,
     template: function template(element, attr) {
       var elems = attr.def.trim().split(/\s*>\s*/).map(function (s) {
-        var _s$match = s.match(/^([^.#\[]*)?(?:#([^.#\[]+))?([^\[]+)?(?:\[([^\]]+)\])?$/);
+        var _parseSelector = parseSelector(s);
 
-        var _s$match2 = _slicedToArray(_s$match, 5);
+        var _parseSelector2 = _slicedToArray(_parseSelector, 4);
 
-        var el = _s$match2[1];
-        var id = _s$match2[2];
-        var cls = _s$match2[3];
-        var attrs = _s$match2[4];
+        var el = _parseSelector2[0];
+        var id = _parseSelector2[1];
+        var cls = _parseSelector2[2];
+        var attrs = _parseSelector2[3];
 
         var elem = {
-          el: el || 'div',
+          el: el,
           attrs: {}
         };
         if (id) elem.attrs.id = id.trim();
         if (cls) elem.attrs['class'] = cls.replace(/\./g, ' ').trim();
         if (attrs) {
           attrs.trim().split(/\s+/).forEach(function (s) {
-            var _ref = s.indexOf('=') ? s.split('=') : [s, ''];
+            var _ref = s.indexOf('=') !== -1 ? s.split('=') : [s, ''];
 
             var _ref2 = _slicedToArray(_ref, 2);
 
@@ -56,14 +73,14 @@ angular.module('ng-zen-wrap', []).directive('zen', function () {
             var v = _ref2[1];
 
             v = v.replace(/["']/g, '');
-            result.attrs[k] = v;
+            elem.attrs[k] = v;
           });
         }
         return elem;
       });
 
-      return createWrapper(elems, element.innerHTML);
+      return createWrapper(elems, element.html());
     }
   };
-});
+}]);
 }());
